@@ -4,10 +4,9 @@ import {Link} from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import search from '../../assets/search-solid.svg';
 import Avatar from '../Avatar/Avatar';
-import Button from '../Button/Button';
 
 const navbar = () => {
-  var User=null;
+  var User=123;
   return (
     <nav className='main-nav'>
         <div className='navbar'>
@@ -24,8 +23,8 @@ const navbar = () => {
             { User === null ? 
                 <Link to='/Auth' className='nav-item nav-links'>Log in</Link> : 
                 <>
-                    <Avatar></Avatar>
-                    <Button className='nav-item nav-links'>Log out</Button>
+                    <Avatar backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white'><Link to="/Auth" style={{color:"white", textDecoration:'none'}}>M</Link></Avatar>
+                    <button className='nav-item nav-links'>Log out</button>
                 </>
             }
         </div>
