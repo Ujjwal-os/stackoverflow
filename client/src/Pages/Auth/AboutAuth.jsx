@@ -11,7 +11,8 @@ const AboutAuth = () => {
             <p style={{fontSize: '13px', color: '#666767'}}>Collaborate and share knowledge with a private group for</p>
             <p style={{fontSize: '13px', color: "#007ac6"}}>Get Stack Overflow for Teams free for up to 50 users.</p>
         </div>
-    )
+       
+  )
 }
 
 export default AboutAuth
