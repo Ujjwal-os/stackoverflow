@@ -7,7 +7,7 @@
     font-size: 13px;
 }
 
-.side-nav{
+ .side-nav{
     height: auto;
     max-width: 100%;
     position: sticky;
@@ -43,4 +43,4 @@
     color: black;
     background-color: rgb(225, 225, 225);
     border-right: solid 3px #ef8236;
-}
+} 
