@@ -74,18 +74,18 @@ const QuestionDetails = () => {
                                 <h1>{question.questionTitle}</h1>
                                 <div className="question-details-container-2">
                                     <div className="question-votes">
-                                        <img src={upvote} alt="" width='18'/>
+                                        <img src={upvote} alt="" width='18' className='votes-icon'/>
                                         <p>{question.upVotes-question.downVotes}</p>
-                                        <img src={downvote} alt="" width='18'/>
+                                        <img src={downvote} alt="" width='18' className='votes-icon'/>
                                     </div>
                                     <div style={{width:"100%"}}>
                                         <p className="question-body">{question.questionBody}</p>
-                                        <div className="question-detail-tags">
+                                        <div className="question-details-tags">
                                             {
                                                 question.questionTags.map((tag)=>(<p key={tag}>{tag}</p>))
                                             }
                                         </div>
-                                        <div className="question-action-user">
+                                        <div className="question-actions-user">
                                             <div>
                                                 <button type="button">Share</button>
                                                 <button type="button">Delete</button>
