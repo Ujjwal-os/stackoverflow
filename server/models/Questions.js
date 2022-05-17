@@ -15,6 +15,12 @@ const QuestionSchema = mongoose.Schema({
         userAnswered: String,
         userId: String,
         answeredOn: { type: Date, default: Date.now},
+        comments:[{
+            commentBody:String,
+            userCommented:String,
+            userId:String,
+            commentedOn:{type:Date,default:Date.now}
+        }]
     }]
 })
 
