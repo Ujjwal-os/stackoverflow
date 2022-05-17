@@ -24,6 +24,12 @@ const QuestionDetails = () => {
             userAnswered: 'kumar',
             answeredOn: "jan 2",
             userId: 2,
+            comments: [{
+                commentBody:"It also may be more semantically correct for something to be a button, even if you want it to look like a link. For example imagine a pair of Expand All Collapse All links that change something on the page. Clicking these causes an action, but doesn't take the user anywhere",
+                userCommented:"manoj",
+                commentedOn: "feb 2",
+                userId:1
+            }]
         }]
     },{ 
         _id: '2',
@@ -41,6 +47,12 @@ const QuestionDetails = () => {
             userAnswered: 'kumar',
             answeredOn: "jan 2",
             userId: 2,
+            comments: [{
+                commentBody:"Comment",
+                userCommented:"manoj",
+                commentedOn: "feb 2",
+                userId:1
+            }]
         }]
     },{ 
         _id: '3',
@@ -58,6 +70,12 @@ const QuestionDetails = () => {
             userAnswered: 'kumar',
             answeredOn: "jan 2",
             userId: 2,
+            comments: [{
+                commentBody:"Comment",
+                userCommented:"manoj",
+                commentedOn: "feb 2",
+                userId:1
+            }]
         }]
     }]
 
