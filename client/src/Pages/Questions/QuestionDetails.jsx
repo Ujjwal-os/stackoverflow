@@ -1,19 +1,23 @@
 import React,{useState} from 'react'
 import './Questions.css'
-import {useParams,Link} from 'react-router-dom'
+import {useParams,Link,useLocation,useNavigate} from 'react-router-dom'
+import moment from 'moment'
+import copy from 'copy-to-clipboard'
 import upvote from '../../assets/sort-up.svg'
 import downvote from '../../assets/sort-down.svg'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import {useSelector,useDispatch} from 'react-redux'
-import {postAnswer} from '../../actions/question.js'
+import {postAnswer,deleteQuestion} from '../../actions/question.js'
 
 const QuestionDetails = () => {
     const {id}=useParams();
     const questionsList=useSelector((state)=>(state.questionsReducer))
     const User=useSelector((state)=>(state.currentUserReducer))
-
+    const navigate=useNavigate();
     const [Answer, setAnswer] = useState("")
+    const location=useLocation();
+    const url="http://localhost:3000";
     // var questionsList = [{ 
     //     _id: '1',
     //     upVotes: 3,
@@ -88,14 +92,24 @@ const QuestionDetails = () => {
     const postAnswerHandler=(e,answerLength)=>{
         e.preventDefault();
         if(User===null){
-            alert("Login or Signup fir posting answer")
+            alert("Login or Signup for posting answer")
+            navigate('/Auth')
         }else{
             if(Answer===""){
                 alert("Enter an answer before submitting")
             }else{
-                dispatch(postAnswer({id,noOfAnswers:answerLength+1,answerBody:Answer,userAnswered:User.result.name}))
+                dispatch(postAnswer({id,noOfAnswers:answerLength+1,answerBody:Answer,userAnswered:User.result.name,userId:User?.result._id}))
             }
         }
+    }
+    const handleShare=()=>{
+        const add=url+location.pathname;
+        copy(add);
+        alert("Copied Link : "+add);
+    }
+    
+    const handleDelete=()=>{
+        dispatch(deleteQuestion(id,navigate))
     }
 
   return (
@@ -124,11 +138,14 @@ const QuestionDetails = () => {
                                         </div>
                                         <div className="question-actions-user">
                                             <div>
-                                                <button type="button">Share</button>
-                                                <button type="button">Delete</button>
+                                                <button type="button" onClick={handleShare}>Share</button>
+                                                {
+                                                    (User?.result?._id===question.userId) && (<button type="button" onClick={handleDelete}>Delete</button>)
+                                                }
+                                                
                                             </div>
                                             <div>
-                                                <p>asked {question.askedOn}</p>
+                                                <p>asked {moment(question.askedOn).fromNow()}</p>
                                                 <Link to={`/User/${question.userId}`} className="user-link" style={{color:'#0086d8'}}>
                                                     <Avatar backgroundColor="orange" px='8px' py='5px'>{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                     <div>
