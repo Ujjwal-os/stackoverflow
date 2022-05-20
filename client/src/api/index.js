@@ -24,3 +24,5 @@ export const voteQuestion = (id, value, userId) => API.patch(`/questions/vote/${
 
 export const getAllUsers = () => API.get('/user/getAllUsers');
 export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`, updateData)
+
+export const postComment = (id,commentBody,userCommented,userId,answerId) => API.patch(`/answer/postComment/${id}`, {commentBody,userCommented,userId,answerId})

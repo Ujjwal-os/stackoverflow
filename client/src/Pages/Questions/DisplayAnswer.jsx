@@ -1,23 +1,23 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {Link,useLocation,useParams} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import Avatar from '../../components/Avatar/Avatar'
-import Comment from './Comment'
+
 import './Questions.css'
 import copy from 'copy-to-clipboard'
 import moment from 'moment'
 import {deleteAnswer} from '../../actions/question.js'
+import PostComment from './PostComment'
+import Comment from './Comment'
 
 const DisplayAnswer = ({question,key}) => {
     const dispatch=useDispatch();
     const {id}=useParams();
     const User=useSelector((state)=>(state.currentUserReducer))
-    const [link,setLink]=useState(true);
+
     const location=useLocation();
     const url="http://localhost:3000"
-    const eventhandle =()=>{
-        setLink(!link);
-    }
+
     const handleShare = () =>{
         const add=url+location.pathname;
         copy(add);
@@ -51,26 +51,14 @@ const DisplayAnswer = ({question,key}) => {
                                 </div>
                             </Link>
                         </div>
+                        
                     </div>
-                    <Comment comments={ans.comments} />
-                
+                    <Comment data={ans.comments} />
+                    <PostComment answerId={ans._id} />    
                 </div>
             ))
         }
-        <form>
-                    {
-                        link && (<button className="comment-button" type="button" onClick={eventhandle}>Add Comment</button>)
-                    }
-                    {
-                        !link && (
-                            <div>
-                                <textarea cols="90" rows="5"></textarea>
-                                <button className="comment-button" type="button" onClick={eventhandle}>Submit Comment</button>
 
-                            </div>
-                        ) 
-                    }
-        </form>
         
     </div>
   )

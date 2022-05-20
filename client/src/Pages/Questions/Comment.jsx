@@ -2,8 +2,13 @@ import React from 'react'
 import './Questions.css'
 import {Link} from 'react-router-dom'
 
-const Comment = ({comments}) => {
-    console.log(comments);
+const Comment = ({answerId}) => {
+   const comments=[{
+     commentBody:"This is comment",
+     userId:1,
+     userCommented:"Pravin",
+     commentedOn:"3 july"
+   }]
   return (
     <div>
         {
