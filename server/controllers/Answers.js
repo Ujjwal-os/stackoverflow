@@ -48,3 +48,41 @@ export const deleteAnswer = async ( req, res ) => {
         res.status(405).json(error)
     }
 }
+
+export const postComment = async(req, res) => {
+    const { id: _id } = req.params;
+    const { commentBody,userCommented,userId,answerId } = req.body;
+    //const userId = req.userId;
+    console.log({ commentBody,userCommented,userId,answerId });
+    console.log(_id);
+    if(!mongoose.Types.ObjectId.isValid(_id)){
+        return res.status(404).send('question unavailable...');
+    }
+    if(!mongoose.Types.ObjectId.isValid(answerId)){
+        return res.status(404).send('Answer unavailable...');
+    } 
+    try {
+        const updatedQuestion = await Questions.updateOne(
+            {
+                '_id':_id,
+                'answer' :{
+                    '$elemMatch':{
+                        '_id':answerId
+                    }
+                }
+            }, { $addToSet: {'answer.$[outer].comments': [{ commentBody,userCommented,userId }]}},
+            {
+                arrayFilters: [
+                  { "outer._id": answerId},
+                 
+        
+              ]
+              }
+        )
+        console.log(updatedQuestion)
+            res.status(200).json(updatedQuestion)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
