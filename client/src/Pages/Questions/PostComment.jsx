@@ -27,7 +27,7 @@ const PostComment = ({answerId}) => {
   return (
     <div>
     {
-        link && (<button className="comment-button" onClick={eventhandle}>Add Comment for {answerId}</button>)
+        link && (<button className="comment-button" onClick={eventhandle}>Add Comment</button>)
     }
     {
         !link && (

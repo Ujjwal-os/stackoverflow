@@ -137,7 +137,8 @@
 
 
   .comment-display{
-    border-top: solid 1px rgba(0, 0, 0, 0.112);
+
+    border-bottom: solid 1px rgba(0, 0, 0, 0.112);
     margin-left: 25px;
     font-size: 14px;
   }

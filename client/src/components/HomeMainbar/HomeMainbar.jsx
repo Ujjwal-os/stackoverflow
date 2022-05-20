@@ -63,7 +63,7 @@ const HomeMainbar = () => {
     //         userId: 2,
     //     }]
     // }]
-
+  console.log(questionsList.data)
     const askAuth=()=>{
         if(user === null){
 

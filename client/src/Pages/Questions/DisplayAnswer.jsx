@@ -27,7 +27,6 @@ const DisplayAnswer = ({question,key}) => {
         dispatch(deleteAnswer(id,answerId,noOfAnswers-1))
     }
 
-
   return (
     <div>
         {
@@ -53,7 +52,7 @@ const DisplayAnswer = ({question,key}) => {
                         </div>
                         
                     </div>
-                    <Comment data={ans.comments} />
+                    <Comment comments={ans.comments} />
                     <PostComment answerId={ans._id} />    
                 </div>
             ))

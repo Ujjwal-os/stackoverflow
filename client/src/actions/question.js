@@ -73,8 +73,8 @@ export const postComment = (commentData)=>async (dispatch)=>{
         console.log({id,commentBody,userCommented,userId,answerId})
         const {data}=await api.postComment(id,commentBody,userCommented,userId,answerId)
         console.log(data);
-        // dispatch({type:"POST_COMMENT",payload:data})
-        // dispatch(fetchAllQuestions())
+        dispatch({type:"POST_COMMENT",payload:data})
+        dispatch(fetchAllQuestions())
     } catch (error) {
         console.log(error);
     }
