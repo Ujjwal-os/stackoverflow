@@ -42,9 +42,9 @@ export const deleteQuestion = async (req, res) => {
 
 export const voteQuestion = async (req, res) => {
     const { id: _id } = req.params;
-    const { value } = req.body;
-    const userId = req.userId;
-    
+    const { value,userId } = req.body;
+  //  const userId = req.body.userId;
+    console.log(_id,value,userId);
     if(!mongoose.Types.ObjectId.isValid(_id)){
         return res.status(404).send('question unavailable...');
     }
@@ -54,7 +54,7 @@ export const voteQuestion = async (req, res) => {
         const upIndex = question.upVote.findIndex((id) => id === String(userId))
         const downIndex = question.downVote.findIndex((id) => id === String(userId))
 
-        if(value === 'upVote'){
+        if(value === 'upvote'){
             if(downIndex !== -1){
                 question.downVote = question.downVote.filter((id) => id !== String(userId))
             } 
@@ -64,7 +64,7 @@ export const voteQuestion = async (req, res) => {
                 question.upVote = question.upVote.filter((id) => id !== String(userId))
             }
         }
-        else if(value === 'downVote'){
+        else if(value === 'downvote'){
             if(upIndex !== -1){
                 question.upVote = question.upVote.filter((id) => id !== String(userId))
             } 
