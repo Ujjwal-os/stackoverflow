@@ -3,8 +3,8 @@ import Questions from '../models/Questions.js'
 
 export const postAnswer = async(req, res) => {
     const { id: _id } = req.params;
-    const { noOfAnswers, answerBody, userAnswered } = req.body;
-    const userId = req.userId;
+    const { noOfAnswers, answerBody, userAnswered, userId } = req.body;
+    //const userId = req.userId;
     if(!mongoose.Types.ObjectId.isValid(_id)){
         return res.status(404).send('question unavailable...');
     }
@@ -29,7 +29,8 @@ const updateNoOfQuestions = async (_id, noOfAnswers) => {
 export const deleteAnswer = async ( req, res ) => {
     const { id:_id } = req.params;
     const { answerId, noOfAnswers } = req.body;
-
+    console.log(req.params);
+    console.log(answerId,noOfAnswers);
     if(!mongoose.Types.ObjectId.isValid(_id)){
         return res.status(404).send('Question unavailable...');
     }
