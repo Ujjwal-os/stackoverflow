@@ -59,7 +59,9 @@ export const deleteAnswer = (id,answerId,noOfAnswers)=> async (dispatch)=>{
 
 export const voteQuestion = (id,value,userId)=> async (dispatch)=>{
     try {
-        
+        console.log({id,value,userId})
+        const {data} = await api.voteQuestion(id,value,userId)
+        dispatch(fetchAllQuestions())
     } catch (error) {
         console.log(error)
     }

@@ -8,7 +8,7 @@ import downvote from '../../assets/sort-down.svg'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import {useSelector,useDispatch} from 'react-redux'
-import {postAnswer,deleteQuestion} from '../../actions/question.js'
+import {postAnswer,deleteQuestion,voteQuestion} from '../../actions/question.js'
 
 const QuestionDetails = () => {
     const {id}=useParams();
@@ -112,6 +112,14 @@ const QuestionDetails = () => {
         dispatch(deleteQuestion(id,navigate))
     }
 
+    const handleUpVote=()=>{
+        dispatch(voteQuestion(id,'upvote',User.result._id))
+    }
+
+    const handleDownVote=()=>{
+        dispatch(voteQuestion(id,'downvote',User.result._id))
+    }
+
   return (
     <div className="question-details-page">
         {
@@ -125,9 +133,9 @@ const QuestionDetails = () => {
                                 <h1>{question.questionTitle}</h1>
                                 <div className="question-details-container-2">
                                     <div className="question-votes">
-                                        <img src={upvote} alt="" width='18' className='votes-icon'/>
-                                        <p>{question.upVotes-question.downVotes}</p>
-                                        <img src={downvote} alt="" width='18' className='votes-icon'/>
+                                        <img src={upvote} alt="" width='18' className='votes-icon' onClick={handleUpVote}/>
+                                        <p>{question.upVote.length-question.downVote.length}</p>
+                                        <img src={downvote} alt="" width='18' className='votes-icon' onClick={handleDownVote}/>
                                     </div>
                                     <div style={{width:"100%"}}>
                                         <p className="question-body">{question.questionBody}</p>
